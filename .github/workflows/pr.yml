@@ -15,7 +15,7 @@ permissions:
 
 jobs:
   check-title:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     steps:
       - name: Check PR title
         if: github.event_name == 'pull_request_target'
@@ -45,7 +45,7 @@ jobs:
           delete: true
 
   check-breaking-change-label:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     env:
       # use an environment variable to pass untrusted input to the script
       # see https://securitylab.github.com/research/github-actions-untrusted-input/
@@ -77,7 +77,7 @@ jobs:
   do-not-merge:
     if: ${{ contains(github.event.*.labels.*.name, 'do not merge') }}
     name: Prevent Merging
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, linux, x64]
     steps:
       - name: Check for label
         run: |
